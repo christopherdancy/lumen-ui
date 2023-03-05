@@ -4,6 +4,10 @@ import { useAccount, useContractWrite, usePrepareContractWrite, useContractRead 
 import poa from "../apis/ProofofAccess.json"
 import { format } from 'date-fns';
 import { DEFAULT_DATE_FORMAT } from '../numberFormats';
+import { ethers } from 'ethers';
+import { useProvider } from 'wagmi'
+
+
 
 
 export interface DonationStatsProps  {
@@ -12,6 +16,7 @@ export interface DonationStatsProps  {
 }
 
 export default function Attest({ userAddress, balance }: { userAddress: string, balance: number }) {
+  const provider = useProvider()
   const poaContract = "0x1413B73E2b97f1aEDf047Ef2667F1cE0D874B3b1";
   const { config } = usePrepareContractWrite({
     addressOrName: poaContract,
@@ -23,6 +28,7 @@ export default function Attest({ userAddress, balance }: { userAddress: string, 
   })
 
   const { write } = useContractWrite(config)
+  
 
   const tokenId = useContractRead({
     addressOrName: poaContract,
@@ -39,8 +45,8 @@ export default function Attest({ userAddress, balance }: { userAddress: string, 
     watch: true,
   })
 return(
-  <div className="pb-4 grid grid-cols-3 gap-4">
-    <div className='col-start-1 col-end-1 flex w-full px-4 text-sm font-medium text-black'>
+  <div className="py-6 grid grid-cols-3 gap-4">
+    <div className='col-start-1 col-end-1 flex w-full text-sm font-medium text-black'>
       <span className="flex flex-grow flex-col">
         <text className="text-lg font-medium text-gray-900">
         Total Assets: ${balance}
@@ -53,7 +59,7 @@ return(
     <div className='col-start-3 col-end-3 flex w-full'>
     <div className='flex flex-grow flex-row gap-6 justify-end items-center'>
       <div className=''>
-        {data && <text className=''>{`Attested: ` + format(data.toNumber() * 1000, DEFAULT_DATE_FORMAT)}</text>}
+        {data && <text className=''>{format(data.toNumber() * 1000, DEFAULT_DATE_FORMAT)}</text>}
       </div>
        <div className=''>
           <button

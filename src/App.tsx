@@ -2,6 +2,10 @@ import { ConnectButton } from "@rainbow-me/rainbowkit";
 import type { Blockchain, Nft } from '@ankr.com/ankr.js/dist/types';
 import { useEffect, useMemo, useState } from 'react';
 import { useAccount } from 'wagmi';
+import { Disclosure, } from '@headlessui/react'
+import pmpLogo from './assets/logo.svg'
+
+
 import {
   chainsToNativeSymbols,
   getAllNativeCurrencyBalances,
@@ -42,25 +46,52 @@ function App() {
  
   return (
     <div className="">
-      <div className="flex flex-col items-center py-8">
-      <h1 className="flex justify-center text-sm sm:text-base md:text-3xl lg:text-4xl pb-10">
-          Lumen
-        </h1>
-        
-        <div className="flex justify-center">
+      
+      <div className="min-h-full">
+        <Disclosure as="nav" className="border-b border-gray-200 bg-white">
+          {({ open }) => (
+            <>
+              <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+                <div className="flex h-16 justify-between">
+                  <div className="flex">
+                    <div className="flex flex-shrink-0 items-center">
+                    <h1 className="font-bold">
+                        <img src={pmpLogo} className="h-8 w-auto inline mr-3" />
+                        Lumen
+                      </h1>
+                    </div>
+                    <div className="sm:-my-px sm:ml-6 sm:flex sm:space-x-8">
+
+                    </div>
+                  </div>
+                  <div className="sm:ml-6 sm:flex sm:items-center">
+
+<div className="flex justify-center">
           <ConnectButton showBalance={false}/>
         </div>
-      </div>
+
+                  </div>
+                </div>
+              </div>
+
+            </>
+          )}
+        </Disclosure>
+</div>
         <div className="px-8 max-w-7xl mb-24">
-          <HistoricalAttestations/>
         <div className='flex flex-col'>
           {address && totalBalance && <Attest userAddress={address} balance= {totalBalance}></Attest>}
+          {address && <HistoricalAttestations userAddress={address}/>}
+          {!address && <text className="text-center p-16 text-lg">Connect Wallet</text>}
  
           {/* Native currency balances */}
           <div className="-my-2 -mx-4 overflow-x-auto sm:-mx-6 lg:-mx-8">
          <div className="inline-block min-w-full py-2 align-middle md:px-6 lg:px-8">
-          <div className="overflow-hidden shadow ring-1 ring-black ring-opacity-5 md:rounded-lg">
-
+         {address && <text className="text-md font-medium text-gray-900">
+         Assets
+        </text>}
+          <div className="mt-2 overflow-hidden shadow ring-1 ring-black ring-opacity-5 md:rounded-lg">
+        
           {nativeBalancesSorted.length > 0 && (
                         <table className="min-w-full divide-y divide-gray-300">
               <thead className="bg-gray-50">

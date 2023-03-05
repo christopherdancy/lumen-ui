@@ -1,16 +1,14 @@
-# 🌈 Welcome to the Vite + React + Tailwind CSS + RainbowKit Starter - For DefiDashboard 
+# Lumen Frontend
 
-Thanks [JoshCS](https://github.com/jcstein/rainbowkit-vite-tailwind-starter) for the template! 
+Simple frontend for Lumen. Allows users to attest to wallet assets to receive a soulbound token.
 
-## To install dependencies
+Built at ETHDenver '23
 
-`npm install` or `yarn install`
+Vite, React, WAGMI, Tailwind
 
-## To run the project locally
+Builds on:
 
-`npm run dev` or `yarn dev`
+- WalletConnect v1 module
+- Probably more soon...
 
-## Demo 
-
-StarterKit Live: [Here!](https://defidashboard-starterkit.vercel.app/)
 

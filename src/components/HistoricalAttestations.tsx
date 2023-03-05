@@ -1,36 +1,27 @@
-import { useProvider } from 'wagmi'
+import { ethers } from 'ethers';
+import { useContractRead, useProvider } from 'wagmi'
 import poa from "../apis/ProofofAccess.json"
-import { BigNumber, ethers } from 'ethers'
-
-export const getProposalVotes = async (
-) => {
-  const provider = useProvider()
-  const contract = new ethers.Contract(
-    '0x1413B73E2b97f1aEDf047Ef2667F1cE0D874B3b1',
-    poa,
-    provider
-  )
-  const voteEventFilter = contract.filters.Attested();
-  const votes = await contract.queryFilter(voteEventFilter);
-  console.log(voteEventFilter)
-  console.log(votes)
-  console.log('hi')
-  // const proposalVotesEvent = votes.filter(voteEvent =>
-  //   voteEvent.args.proposalId.eq(proposalNumber)
-  // );
-
-  // return proposalVotesEvent.map(({ args }) => ({
-  //   voter: args.voter,
-  //   choice: VOTE_CHOICES[args.support],
-  //   weight: args.weight,
-  // }));
-};
 
 
-export default function HistoricalAttestations() {
-  getProposalVotes()
+const attestations = [
+  { date: '2/22', balance: '$132' },
+  { date: '1/22', balance: '$88' },
+  { date: '11/22', balance: '$23' },
+  { date: '10/22', balance: '$100' },
+]
+
+export default function HistoricalAttestations({ userAddress }: { userAddress: string }) {
+  const poaContract = "0xD25e37DF87250411A8a5eebEa2085b890316F2e7";
+
+  const tokenId = useContractRead({
+    addressOrName: poaContract,
+    contractInterface: poa,
+    functionName: 'requests',
+    args: [userAddress, userAddress],
+  })
+
   return (
-    <div className="py-4">
+    <div className="pb-4">
        <text className="text-md font-medium text-gray-900">
          Attestations
         </text>
@@ -50,14 +41,14 @@ export default function HistoricalAttestations() {
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-gray-200 bg-white">
-                  {/* {attestations.map((attestation) => (
+                  {attestations.map((attestation) => (
                     <tr key={attestation.date}>
                       <td className="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-6">
                         {attestation.date}
                       </td>
                       <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{attestation.balance}</td>
                     </tr>
-                  ))} */}
+                  ))}
                 </tbody>
               </table>
             </div>
