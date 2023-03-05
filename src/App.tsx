@@ -3,7 +3,7 @@ import type { Blockchain, Nft } from '@ankr.com/ankr.js/dist/types';
 import { useEffect, useMemo, useState } from 'react';
 import { useAccount } from 'wagmi';
 import { Disclosure, } from '@headlessui/react'
-import pmpLogo from './assets/logo.svg'
+import pmpLogo from './assets/Lumen.logo.png'
 
 
 import {
@@ -57,7 +57,7 @@ function App() {
                     <div className="flex flex-shrink-0 items-center">
                     <h1 className="font-bold">
                         <img src={pmpLogo} className="h-8 w-auto inline mr-3" />
-                        Lumen
+                        
                       </h1>
                     </div>
                     <div className="sm:-my-px sm:ml-6 sm:flex sm:space-x-8">

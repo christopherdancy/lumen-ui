@@ -65,7 +65,7 @@ return(
           <button
             type="submit"
             onClick={()=>{ write && write()}}
-            className="rounded-md border border-transparent bg-emerald-600 py-2 px-12 text-sm font-medium text-white shadow-sm hover:bg-emerald-700 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:ring-offset-2"
+            className="rounded-md border border-transparent bg-blue-600 py-2 px-12 text-sm font-medium text-white shadow-sm hover:bg-emerald-700 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:ring-offset-2"
             >
             Attest
           </button>

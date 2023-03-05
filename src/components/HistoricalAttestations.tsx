@@ -4,7 +4,7 @@ import poa from "../apis/ProofofAccess.json"
 
 
 const attestations = [
-  { date: '2/22', balance: '$132' },
+  { date: '3/03', balance: '$4579' },
   { date: '1/22', balance: '$88' },
   { date: '11/22', balance: '$23' },
   { date: '10/22', balance: '$100' },
